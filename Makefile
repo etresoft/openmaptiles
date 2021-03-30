@@ -144,7 +144,7 @@ export BORDERS_CSV_FILE ?= data/borders/$(area).lines.csv
 
 # The file is placed into the $EXPORT_DIR=/export (mapped to ./data)
 export MBTILES_FILE = $(area).mbtiles
-MBTILES_LOCAL_FILE = data/$(MBTILES_FILE)
+MBTILES_LOCAL_FILE = $(MBTILES_DIR)/$(MBTILES_FILE)
 
 ifeq ($(strip $(DIFF_MODE)),true)
   # import-osm implementation requires IMPOSM_CONFIG_FILE to be set to a valid file
