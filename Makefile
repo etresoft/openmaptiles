@@ -335,7 +335,7 @@ else
 		$(newline)   You probably downloaded the data file before setting DIFF_MODE=true. \
 		$(newline)   You can delete the data file  $(PBF_FILE) and re-run  make download \
 		$(newline)   to re-download and generate config, or manually create  $(IMPOSM_CONFIG_FILE) \
-		$(newline)   See example    https://github.com/openmaptiles/openmaptiles-tools/blob/v5.2/bin/config/repl_config.json \
+		$(newline)   See example    https://github.com/etresoft/openmaptiles-tools/blob/v5.2/bin/config/repl_config.json \
 		$(newline))
   else
 	@echo "Data files $(PBF_FILE) and replication config $(IMPOSM_CONFIG_FILE) already exists, skipping the download."
