@@ -159,8 +159,8 @@ make init-dirs
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : Removing old MBTILES if exists ( ./data/${area}.mbtiles ) "
-rm -f "./data/${area}.mbtiles"
+echo "====> : Removing old MBTILES if exists ( ${MBTILES_DIR}/${area}.mbtiles ) "
+rm -f "${MBTILES_DIR}/${area}.mbtiles"
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
@@ -280,7 +280,7 @@ echo " "
 echo "-------------------------------------------------------------------------------------"
 echo "====> : Start generating MBTiles (containing gzipped MVT PBF) from a TM2Source project. "
 echo "      : TM2Source project definitions : ./build/openmaptiles.tm2source/data.yml "
-echo "      : Output MBTiles: ./data/${area}.mbtiles  "
+echo "      : Output MBTiles: ${MBTILES_DIR}/${area}.mbtiles  "
 echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/generate-vectortiles "
 echo "      : We are using a lot of Mapbox Open Source tools! : https://github.com/mapbox "
 echo "      : Thank you https://www.mapbox.com !"
@@ -320,7 +320,7 @@ docker images | grep openmaptiles
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : (disk space) We have created the new vectortiles ( ./data/${area}.mbtiles ) "
+echo "====> : (disk space) We have created the new vectortiles ( ${MBTILES_DIR}/${area}.mbtiles ) "
 echo "      : Please respect the licenses (OdBL for OSM data) of the sources when distributing the MBTiles file."
 echo "      : Data directory content:"
 ls -la ./data
