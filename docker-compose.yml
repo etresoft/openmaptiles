@@ -1,8 +1,8 @@
 # This version must match the MAKE_DC_VERSION value below
 version: "2.3"
 
-#volumes:
-#  pgdata:
+volumes:
+  pgdata:
 
 networks:
   postgres:
@@ -13,11 +13,8 @@ services:
   postgres:
     image: "${POSTGIS_IMAGE:-openmaptiles/postgis}:${TOOLS_VERSION}"
     # Use "command: postgres -c jit=off" for PostgreSQL 11+ because of slow large MVT query processing
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      #- pgdata:/var/lib/postgresql/data
-      - /ssd/docker:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - postgres
     ports:
