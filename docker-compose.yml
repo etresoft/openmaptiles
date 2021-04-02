@@ -62,7 +62,7 @@ services:
     image: "openmaptiles/generate-vectortiles:${TOOLS_VERSION}"
     command: ./export-list.sh
     volumes:
-      - ./data:/export
+      - /hdd:/export
       - ./build/openmaptiles.tm2source:/tm2source
     networks:
       - postgres
