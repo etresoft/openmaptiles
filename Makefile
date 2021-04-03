@@ -405,7 +405,7 @@ generate-tiles: all start-db
 	$(DOCKER_COMPOSE) run $(DC_OPTS) generate-vectortiles
 	@echo "Updating generated tile metadata ..."
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools \
-			mbtiles-tools meta-generate "$(MBTILES_LOCAL_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
+			mbtiles-tools meta-generate "/export/$(MBTILES_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
 
 .PHONY: generate-tiles-pg
 generate-tiles-pg: all start-db
@@ -415,7 +415,7 @@ generate-tiles-pg: all start-db
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools generate-tiles
 	@echo "Updating generated tile metadata ..."
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools \
-			mbtiles-tools meta-generate "$(MBTILES_LOCAL_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
+			mbtiles-tools meta-generate "/export/$(MBTILES_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
 
 .PHONY: start-tileserver
 start-tileserver: init-dirs

@@ -6,7 +6,9 @@ volumes:
 
 networks:
   postgres:
-    driver: bridge
+#    driver: bridge
+    external:
+      name: gaia-local
 
 services:
 
