@@ -55,7 +55,7 @@ services:
     volumes:
       - .:/tileset
       - ./data:/import
-      - /hdd:/export
+      - ./data:/export
       - ./build/sql:/sql
       - ./build:/mapping
       - ./cache:/cache
@@ -64,7 +64,7 @@ services:
     image: "openmaptiles/generate-vectortiles:${TOOLS_VERSION}"
     command: ./export-list.sh
     volumes:
-      - /hdd:/export
+      - ./data:/export
       - ./build/openmaptiles.tm2source:/tm2source
     networks:
       - postgres
@@ -78,7 +78,7 @@ services:
   generate-vectortiles:
     image: "openmaptiles/generate-vectortiles:${TOOLS_VERSION}"
     volumes:
-      - /hdd:/export
+      - ./data:/export
       - ./build/openmaptiles.tm2source:/tm2source
     networks:
       - postgres

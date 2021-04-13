@@ -62,7 +62,7 @@ MIN_COMPOSE_VER=1.7.1
 MIN_DOCKER_VER=1.12.3
 STARTTIME=$(date +%s)
 STARTDATE=$(date +"%Y-%m-%dT%H:%M%z")
-MBTILES_DIR=/hdd
+MBTILES_DIR=./data
 
 log_file=./quickstart.log
 rm -f $log_file
