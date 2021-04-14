@@ -62,7 +62,6 @@ MIN_COMPOSE_VER=1.7.1
 MIN_DOCKER_VER=1.12.3
 STARTTIME=$(date +%s)
 STARTDATE=$(date +"%Y-%m-%dT%H:%M%z")
-MBTILES_DIR=./data
 
 log_file=./quickstart.log
 rm -f $log_file
@@ -160,8 +159,8 @@ make init-dirs
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : Removing old MBTILES if exists ( ${MBTILES_DIR}/${area}.mbtiles ) "
-rm -f "${MBTILES_DIR}/${area}.mbtiles"
+echo "====> : Removing old MBTILES if exists ( ./data/${area}.mbtiles ) "
+rm -f "./data/${area}.mbtiles"
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
@@ -176,7 +175,7 @@ make clean
 echo " "
 echo "-------------------------------------------------------------------------------------"
 echo "====> : Code generating from the layer definitions ( ./build/mapping.yaml; ./build/sql/* )"
-echo "      : The tool source code: https://github.com/etresoft/openmaptiles-tools "
+echo "      : The tool source code: https://github.com/openmaptiles/openmaptiles-tools "
 echo "      : But we generate the tm2source, Imposm mappings and SQL functions from the layer definitions! "
 make all
 
@@ -190,7 +189,7 @@ if [[ "$USE_PRELOADED_IMAGE" == true ]]; then
   echo "      :   Terms-of-use: http://www.naturalearthdata.com/about/terms-of-use"
   echo "      : * OpenStreetMap Lakelines data https://github.com/lukasmartinelli/osm-lakelines"
   echo "      :"
-  echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/import-data"
+  echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-data"
   echo "      :   includes all data from the import-data image"
   echo "      :"
   echo "      : Use the --empty flag to start with an empty database:"
@@ -200,7 +199,7 @@ if [[ "$USE_PRELOADED_IMAGE" == true ]]; then
   echo "      :   make start-db"
   echo "      :   make import-data"
   echo "      :"
-  echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/postgis-preloaded"
+  echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/postgis-preloaded"
   echo "      : Thank you https://www.postgresql.org !  Thank you http://postgis.org !"
   make start-db-preloaded
 else
@@ -211,7 +210,7 @@ else
   echo "      :   Terms-of-use: http://www.naturalearthdata.com/about/terms-of-use"
   echo "      : * OpenStreetMap Lakelines data https://github.com/lukasmartinelli/osm-lakelines"
   echo "      :"
-  echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/import-data"
+  echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-data"
   echo "      :   includes all data from the import-data image"
   echo "      :"
   echo "      : Thank you https://www.postgresql.org !  Thank you http://postgis.org !"
@@ -224,7 +223,7 @@ echo "--------------------------------------------------------------------------
 echo "====> : Start importing OpenStreetMap data: ${area} -> imposm3[./build/mapping.yaml] -> PostgreSQL"
 echo "      : Imposm3 documentation: https://imposm.org/docs/imposm3/latest/index.html "
 echo "      :   Thank you Omniscale! "
-echo "      :   Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/import-osm "
+echo "      :   Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-osm "
 echo "      : The OpenstreetMap data license: https://www.openstreetmap.org/copyright (ODBL) "
 echo "      : Thank you OpenStreetMap Contributors ! "
 make import-osm
@@ -247,7 +246,7 @@ make import-wikidata
 echo " "
 echo "-------------------------------------------------------------------------------------"
 echo "====> : Start SQL postprocessing:  ./build/sql/* -> PostgreSQL "
-echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/blob/master/bin/import-sql"
+echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/blob/master/bin/import-sql"
 # If the output contains a WARNING, stop further processing
 # Adapted from https://unix.stackexchange.com/questions/307562
 make import-sql
@@ -281,8 +280,8 @@ echo " "
 echo "-------------------------------------------------------------------------------------"
 echo "====> : Start generating MBTiles (containing gzipped MVT PBF) from a TM2Source project. "
 echo "      : TM2Source project definitions : ./build/openmaptiles.tm2source/data.yml "
-echo "      : Output MBTiles: ${MBTILES_DIR}/${area}.mbtiles  "
-echo "      : Source code: https://github.com/etresoft/openmaptiles-tools/tree/master/docker/generate-vectortiles "
+echo "      : Output MBTiles: ./data/${area}.mbtiles  "
+echo "      : Source code: https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/generate-vectortiles "
 echo "      : We are using a lot of Mapbox Open Source tools! : https://github.com/mapbox "
 echo "      : Thank you https://www.mapbox.com !"
 echo "      : See other MVT tools : https://github.com/mapbox/awesome-vector-tiles "
@@ -321,7 +320,7 @@ docker images | grep openmaptiles
 
 echo " "
 echo "-------------------------------------------------------------------------------------"
-echo "====> : (disk space) We have created the new vectortiles ( ${MBTILES_DIR}/${area}.mbtiles ) "
+echo "====> : (disk space) We have created the new vectortiles ( ./data/${area}.mbtiles ) "
 echo "      : Please respect the licenses (OdBL for OSM data) of the sources when distributing the MBTiles file."
 echo "      : Data directory content:"
 ls -la ./data

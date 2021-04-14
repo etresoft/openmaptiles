@@ -143,8 +143,8 @@ export BORDERS_PBF_FILE ?= data/borders/$(area).filtered.pbf
 export BORDERS_CSV_FILE ?= data/borders/$(area).lines.csv
 
 # The file is placed into the $EXPORT_DIR=/export (mapped to ./data)
-export MBTILES_FILE = $(area).mbtiles
-MBTILES_LOCAL_FILE = $(MBTILES_DIR)/$(MBTILES_FILE)
+export MBTILES_FILE ?= $(area).mbtiles
+MBTILES_LOCAL_FILE = data/$(MBTILES_FILE)
 
 ifeq ($(strip $(DIFF_MODE)),true)
   # import-osm implementation requires IMPOSM_CONFIG_FILE to be set to a valid file
@@ -335,7 +335,7 @@ else
 		$(newline)   You probably downloaded the data file before setting DIFF_MODE=true. \
 		$(newline)   You can delete the data file  $(PBF_FILE) and re-run  make download \
 		$(newline)   to re-download and generate config, or manually create  $(IMPOSM_CONFIG_FILE) \
-		$(newline)   See example    https://github.com/etresoft/openmaptiles-tools/blob/v5.2/bin/config/repl_config.json \
+		$(newline)   See example    https://github.com/openmaptiles/openmaptiles-tools/blob/v5.2/bin/config/repl_config.json \
 		$(newline))
   else
 	@echo "Data files $(PBF_FILE) and replication config $(IMPOSM_CONFIG_FILE) already exists, skipping the download."
@@ -405,7 +405,7 @@ generate-tiles: all start-db
 	$(DOCKER_COMPOSE) run $(DC_OPTS) generate-vectortiles
 	@echo "Updating generated tile metadata ..."
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools \
-			mbtiles-tools meta-generate "/export/$(MBTILES_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
+			mbtiles-tools meta-generate "$(MBTILES_LOCAL_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
 
 .PHONY: generate-tiles-pg
 generate-tiles-pg: all start-db
@@ -415,7 +415,7 @@ generate-tiles-pg: all start-db
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools generate-tiles
 	@echo "Updating generated tile metadata ..."
 	$(DOCKER_COMPOSE) run $(DC_OPTS) openmaptiles-tools \
-			mbtiles-tools meta-generate "/export/$(MBTILES_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
+			mbtiles-tools meta-generate "$(MBTILES_LOCAL_FILE)" $(TILESET_FILE) --auto-minmax --show-ranges
 
 .PHONY: start-tileserver
 start-tileserver: init-dirs

@@ -2,7 +2,7 @@
 
 OpenMapTiles is an extensible and open tile schema based on the OpenStreetMap. This project is used to generate vector tiles for online zoomable maps. OpenMapTiles is about creating a beautiful basemaps with general layers containing topographic information. More information [openmaptiles.org](https://openmaptiles.org/) and [maptiler.com/data/](https://www.maptiler.com/data/).
 
-We encourage you to collaborate, reuse and adapt existing layers, or add your own layers. You may use our approach for your own vector tile project. Feel free to fork the repo and experiment. The repository is built on top of the [etresoft/openmaptiles-tools](https://github.com/etresoft/openmaptiles-tools) to simplify vector tile creation.
+We encourage you to collaborate, reuse and adapt existing layers, or add your own layers. You may use our approach for your own vector tile project. Feel free to fork the repo and experiment. The repository is built on top of the [openmaptiles/openmaptiles-tools](https://github.com/openmaptiles/openmaptiles-tools) to simplify vector tile creation.
 
 Please keep in mind that OpenMapTiles schema should display general topographic content. If creating a new layer or expanding an existing layer with a specific theme, please create a fork and invite other community members to cooperate on your topic. OpenMapTiles schema is used in many projects all over the world and the size of the final vector tiles needs to be considered in any update.
 
@@ -109,7 +109,7 @@ Download OpenStreetMap data extracts from any source like [Geofabrik](http://dow
 make download area=albania
 ```
 
-[Import OpenStreetMap data](https://github.com/etresoft/openmaptiles-tools/tree/master/docker/import-osm) with the mapping rules from
+[Import OpenStreetMap data](https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/import-osm) with the mapping rules from
 `build/mapping.yaml` (which has been created by `make`). Run after any change in layers definition.  Also create borders table using extra processing with [osmborder](https://github.com/pnorman/osmborder) tool.
 
 ```bash
